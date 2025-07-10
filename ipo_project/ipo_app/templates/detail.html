@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{{ ipo.company_name }} Details</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-4">
+  <h1>{{ ipo.company_name }}</h1>
+  <img src="{{ ipo.logo.url }}" class="img-thumbnail mb-3" alt="{{ ipo.company_name }}">
+  <ul class="list-group mb-3">
+    <li class="list-group-item">Status: {{ ipo.status|title }}</li>
+    <li class="list-group-item">Price Band: {{ ipo.price_band }}</li>
+    <li class="list-group-item">Open Date: {{ ipo.open_date }}</li>
+    <li class="list-group-item">Close Date: {{ ipo.close_date }}</li>
+    <li class="list-group-item">Issue Size: {{ ipo.issue_size }}</li>
+    <li class="list-group-item">Issue Type: {{ ipo.issue_type }}</li>
+    <li class="list-group-item">Listing Date: {{ ipo.listing_date }}</li>
+    <li class="list-group-item">IPO Price: {{ ipo.ipo_price }}</li>
+    <li class="list-group-item">Listing Price: {{ ipo.listing_price }}</li>
+    <li class="list-group-item">Current Market Price: {{ ipo.current_market_price }}</li>
+    <li class="list-group-item">Listing Gain: {{ ipo.listing_gain }}%</li>
+    <li class="list-group-item">Current Return: {{ ipo.current_return }}%</li>
+  </ul>
+  <a href="{{ ipo.rhp_pdf.url }}" class="btn btn-success">Download RHP</a>
+  <a href="{{ ipo.drhp_pdf.url }}" class="btn btn-info">Download DRHP</a>
+  <a href="/" class="btn btn-secondary">Back</a>
+</div>
+</body>
+</html>
