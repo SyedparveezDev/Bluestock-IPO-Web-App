@@ -1,37 +1,44 @@
-# 📈 Bluestock IPO Web Application
+# 📊 Bluestock IPO Web App
 
-This is a production-level **IPO web app & REST API** built for Bluestock Fintech.  
-Built with: **Django + Django REST Framework + Bootstrap**
+Production-level Django web application + REST API to manage & display IPO data  
+Built for Bluestock Fintech interns, following real-world best practices.
 
 ---
 
-## 🎯 **Features**
-
-✅ Public pages:
-- List of IPOs (Upcoming, Ongoing, Listed)
+## 🚀 **Features**
+✅ Public website:
+- List IPOs (upcoming, ongoing, listed)
 - IPO detail page
 - Download RHP & DRHP PDFs
-- Search & Filter
 
 ✅ Admin panel:
-- Login-secured CRUD
-- Upload PDFs & logos
+- Login protected
+- CRUD IPOs
+- Upload logos, PDFs
 
-✅ REST API:
-- `/api/ipo/` — list IPOs
-- `/api/ipo/<id>/` — IPO details
-- Supports search & sort
-
----
-
-## 🛠 **Tech Stack**
-- Python 3.12
-- Django 5.0.6
-- Django REST Framework 3.15.1
-- PostgreSQL
-- HTML / CSS / JavaScript
-- Bootstrap 5
+✅ REST API (with search/filter):
+- `/api/ipo/`
+- `/api/ipo/<id>/`
 
 ---
 
-## 📦 **Project Structure**
+## 🛠 **Tech stack**
+| Layer     | Technology                           |
+|----------|--------------------------------------|
+| Backend  | Python 3.12, Django 5.0.6, DRF 3.15  |
+| Frontend | HTML, CSS, Bootstrap 5, JavaScript   |
+| DB       | PostgreSQL (default: SQLite for dev) |
+
+---
+
+## 📦 **Project structure**
+```plaintext
+ipo_project/
+├── manage.py
+├── ipo_project/
+│   └── settings.py, urls.py, ...
+├── ipo_app/
+│   ├── models.py, views.py, urls.py, ...
+│   └── templates/home.html, detail.html
+├── media/
+└── static/
