@@ -18,7 +18,7 @@ class IPODetailAPI(generics.RetrieveAPIView):
 # Web views
 def home(request):
     ipos = IPO.objects.all()
-    return render(request, 'home.html', {'ipos': ipos})
+    return render(request, 'ipo_app/upcoming_ipo.html', {'ipos': ipos})
 
 def ipo_detail(request, pk):
     ipo = get_object_or_404(IPO, pk=pk)
