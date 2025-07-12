@@ -23,3 +23,7 @@ def home(request):
 def ipo_detail(request, pk):
     ipo = get_object_or_404(IPO, pk=pk)
     return render(request, 'detail.html', {'ipo': ipo})
+
+def upcoming_ipo(request):
+    ipos = IPO.objects.filter(status='upcoming')
+    return render(request, 'ipo_app/upcoming_ipo.html', {'ipos': ipos})
