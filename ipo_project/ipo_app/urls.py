@@ -9,4 +9,5 @@ urlpatterns = [
     # Web pages
     path('', views.home, name='home'),
     path('ipo/<int:pk>/', views.ipo_detail, name='ipo-detail'),
+    path('upcoming/', views.upcoming_ipo, name='upcoming-ipo'),
 ]
