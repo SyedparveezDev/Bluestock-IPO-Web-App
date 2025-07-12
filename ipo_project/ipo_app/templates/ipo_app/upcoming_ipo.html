@@ -1,0 +1,34 @@
+{% extends 'ipo_app/base.html' %}
+{% load static %}
+
+{% block content %}
+<h3 class="mb-3">Upcoming IPO</h3>
+<p class="text-muted">Companies that have filed for an IPO with SEBI. Few details might be disclosed by the companies later.</p>
+
+<div class="row">
+  {% for ipo in ipos %}
+  <div class="col-md-4">
+    <div class="ipo-card">
+      <img src="{{ ipo.logo.url }}" alt="{{ ipo.company_name }}" class="mb-2" style="height:40px;">
+      <h5 class="mb-2">{{ ipo.company_name }}</h5>
+      <ul class="list-unstyled small">
+        <li>Price Band: {{ ipo.price_band|default:"Not issued" }}</li>
+        <li>Open: {{ ipo.open_date|default:"Not issued" }}</li>
+        <li>Close: {{ ipo.close_date|default:"Not issued" }}</li>
+        <li>Issue Size: {{ ipo.issue_size|default:"Not issued" }}</li>
+        <li>Issue Type: {{ ipo.issue_type|default:"Not issued" }}</li>
+        <li>Listing Date: {{ ipo.listing_date|default:"Not issued" }}</li>
+      </ul>
+      <div class="d-flex gap-2">
+        {% if ipo.rhp_pdf %}
+        <a href="{{ ipo.rhp_pdf.url }}" class="btn btn-sm btn-rhp">RHP</a>
+        {% endif %}
+        {% if ipo.drhp_pdf %}
+        <a href="{{ ipo.drhp_pdf.url }}" class="btn btn-sm btn-drhp">DRHP</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}
