@@ -17,3 +17,4 @@ def home(request):
         'query': query,
         'status_filter': status_filter,
     })
+
