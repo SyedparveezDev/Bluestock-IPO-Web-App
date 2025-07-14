@@ -9,8 +9,10 @@
   {% for ipo in ipos %}
   <div class="col-md-4">
     <div class="ipo-card">
-      <img src="{{ ipo.logo.url }}" alt="{{ ipo.company_name }}" class="mb-2" style="height:40px;">
-      <h5 class="mb-2">{{ ipo.company_name }}</h5>
+      <a href="?ipo_id={{ ipo.id }}" class="text-decoration-none">
+        <img src="{{ ipo.logo.url }}" alt="{{ ipo.company_name }}" class="mb-2" style="height:40px;">
+        <h5 class="mb-2">{{ ipo.company_name }}</h5>
+      </a>
       <ul class="list-unstyled small">
         <li>Price Band: {{ ipo.price_band|default:"Not issued" }}</li>
         <li>Open: {{ ipo.open_date|default:"Not issued" }}</li>
@@ -31,10 +33,10 @@
   </div>
   {% endfor %}
 </div>
+
 <hr class="my-4">
 
 <h4>IPO Detail</h4>
-
 {% if selected_ipo %}
 <div class="card mb-3">
   <div class="row g-0">
@@ -53,7 +55,7 @@
           IPO Price: {{ selected_ipo.ipo_price|default:"Not issued" }}<br>
           Listing Price: {{ selected_ipo.listing_price|default:"Not issued" }}<br>
           Current Market Price: {{ selected_ipo.current_market_price|default:"Not issued" }}<br>
-          Current Return: {{ selected_ipo.current_return|default:"Not issued" }}<br>
+          Current Return: {{ selected_ipo.current_return|default:"Not issued" }}
         </p>
         <div class="d-flex gap-2">
           {% if selected_ipo.rhp_pdf %}
@@ -70,5 +72,4 @@
 {% else %}
 <p class="text-muted">Select an IPO to see details.</p>
 {% endif %}
-
 {% endblock %}
