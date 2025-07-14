@@ -1,0 +1,17 @@
+<form method="get" class="row g-2 mb-4">
+  <div class="col-md-4">
+    <input type="text" name="q" placeholder="Search IPO by name"
+           value="{{ query|default:'' }}" class="form-control">
+  </div>
+  <div class="col-md-4">
+    <select name="status" class="form-select">
+      <option value="">All Status</option>
+      <option value="upcoming" {% if status_filter == 'upcoming' %}selected{% endif %}>Upcoming</option>
+      <option value="ongoing" {% if status_filter == 'ongoing' %}selected{% endif %}>Ongoing</option>
+      <option value="listed" {% if status_filter == 'listed' %}selected{% endif %}>Listed</option>
+    </select>
+  </div>
+  <div class="col-md-4">
+    <button type="submit" class="btn btn-primary">Search</button>
+  </div>
+</form>
