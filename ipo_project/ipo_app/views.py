@@ -16,21 +16,3 @@ class IPODetailAPI(generics.RetrieveAPIView):
     serializer_class = IPOSerializer
 
 # Web views
-def home(request):
-    ipos = IPO.objects.all()
-    return render(request, 'ipo_app/upcoming_ipo.html', {'ipos': ipos})
-
-def ipo_detail(request, pk):
-    ipo = get_object_or_404(IPO, pk=pk)
-    return render(request, 'detail.html', {'ipo': ipo})
-
-def upcoming_ipo(request):
-    ipos = IPO.objects.filter(status='upcoming')
-    selected_ipo = None
-    ipo_id = request.GET.get('ipo_id')
-    if ipo_id:
-        selected_ipo = get_object_or_404(IPO, pk=ipo_id)
-    return render(request, 'ipo_app/upcoming_ipo.html', {
-        'ipos': ipos,
-        'selected_ipo': selected_ipo
-    })
