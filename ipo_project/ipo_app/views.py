@@ -8,7 +8,7 @@ def home(request):
     ipos = IPO.objects.all()
 
     if query:
-        ipos = ipos.filter(name__icontains=query)
+        ipos = ipos.filter(company_name__icontains=query)
     if status_filter:
         ipos = ipos.filter(status=status_filter)
 
