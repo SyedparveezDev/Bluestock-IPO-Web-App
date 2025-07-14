@@ -31,4 +31,44 @@
   </div>
   {% endfor %}
 </div>
+<hr class="my-4">
+
+<h4>IPO Detail</h4>
+
+{% if selected_ipo %}
+<div class="card mb-3">
+  <div class="row g-0">
+    <div class="col-md-2">
+      <img src="{{ selected_ipo.logo.url }}" class="img-fluid rounded-start" alt="{{ selected_ipo.company_name }}">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h5 class="card-title">{{ selected_ipo.company_name }}</h5>
+        <p class="card-text">
+          Price Band: {{ selected_ipo.price_band|default:"Not issued" }}<br>
+          Open Date: {{ selected_ipo.open_date|default:"Not issued" }}<br>
+          Close Date: {{ selected_ipo.close_date|default:"Not issued" }}<br>
+          Issue Size: {{ selected_ipo.issue_size|default:"Not issued" }}<br>
+          Listing Date: {{ selected_ipo.listing_date|default:"Not issued" }}<br>
+          IPO Price: {{ selected_ipo.ipo_price|default:"Not issued" }}<br>
+          Listing Price: {{ selected_ipo.listing_price|default:"Not issued" }}<br>
+          Current Market Price: {{ selected_ipo.current_market_price|default:"Not issued" }}<br>
+          Current Return: {{ selected_ipo.current_return|default:"Not issued" }}<br>
+        </p>
+        <div class="d-flex gap-2">
+          {% if selected_ipo.rhp_pdf %}
+          <a href="{{ selected_ipo.rhp_pdf.url }}" class="btn btn-sm btn-rhp">Download RHP</a>
+          {% endif %}
+          {% if selected_ipo.drhp_pdf %}
+          <a href="{{ selected_ipo.drhp_pdf.url }}" class="btn btn-sm btn-drhp">Download DRHP</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% else %}
+<p class="text-muted">Select an IPO to see details.</p>
+{% endif %}
+
 {% endblock %}
