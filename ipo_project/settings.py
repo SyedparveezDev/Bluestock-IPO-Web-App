@@ -62,8 +62,8 @@ WSGI_APPLICATION = 'ipo_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'ipo_db',
-        'USER': 'postgres',
+        'NAME': 'bluestock_db',
+        'USER': 'Syedparveez',
         'PASSWORD': 'admin123',
         'HOST': 'localhost',
         'PORT': '5432',
