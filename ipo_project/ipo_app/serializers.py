@@ -1,11 +1,11 @@
-from rest_framework import generics
+from rest_framework import serializers
 from .models import IPO
-from .serializers import IPOSerializer
+class IPOSerializer(serializers.ModelSerializer):
+    issue_size_display = serializers.SerializerMethodField()
 
-class IPOListAPI(generics.ListAPIView):
-    queryset = IPO.objects.all()
-    serializer_class = IPOSerializer
+    class Meta:
+        model = IPO
+        fields = '__all__'
 
-class IPODetailAPI(generics.RetrieveAPIView):
-    queryset = IPO.objects.all()
-    serializer_class = IPOSerializer
+    def get_issue_size_display(self, obj):
+        return f"₹{obj.issue_size} Crore"

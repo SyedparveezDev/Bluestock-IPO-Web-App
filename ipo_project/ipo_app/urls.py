@@ -1,13 +1,11 @@
-from django.urls import path
-from . import views
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from .views import IPOViewSet, ipo_chart_data
+
+router = DefaultRouter()
+router.register('ipo', IPOViewSet, basename='ipo')
 
 urlpatterns = [
-    # 📌 API endpoints
-    path('api/ipo/', views.IPOListAPI.as_view(), name='api-ipo-list'),
-    path('api/ipo/<int:pk>/', views.IPODetailAPI.as_view(), name='api-ipo-detail'),
-
-    # 🌐 Web pages
-    path('', views.home, name='home'),                          # Homepage shows IPO cards + detail below
-    path('ipo/<int:pk>/', views.ipo_detail, name='ipo-detail'), # (optional) separate detail page if you want
-    path('upcoming/', views.upcoming_ipo, name='upcoming-ipo'), # IPO list page (can also be same as home)
+    path('', include(router.urls)),   
+    path('chart-data/', ipo_chart_data, name='ipo_chart_data'),
 ]

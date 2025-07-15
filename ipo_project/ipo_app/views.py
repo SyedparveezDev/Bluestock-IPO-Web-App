@@ -1,22 +1,51 @@
-from django.core.paginator import Paginator
+from rest_framework import viewsets, filters
+from .models import IPO
+from .serializers import IPOSerializer
+from django.http import JsonResponse
+from django.shortcuts import render
+from django.views.generic import TemplateView
+from rest_framework.pagination import PageNumberPagination
+from django.db.models import Count
+from datetime import datetime
+from django.db.models.functions import TruncMonth
 
-def home(request):
-    query = request.GET.get('q')
-    status_filter = request.GET.get('status')
+class StandardResultsSetPagination(PageNumberPagination):
+    page_size = 10
+    page_size_query_param = 'page_size'
+    max_page_size = 100
 
-    ipos = IPO.objects.all()
+class IPOViewSet(viewsets.ModelViewSet):
+    queryset = IPO.objects.all().order_by('-open_date')
+    serializer_class = IPOSerializer
+    pagination_class = StandardResultsSetPagination
 
-    if query:
-        ipos = ipos.filter(company_name__icontains=query)
-    if status_filter:
-        ipos = ipos.filter(status=status_filter)
+    filter_backends = [filters.SearchFilter, filters.OrderingFilter]
+    search_fields = ['company_name', 'issue_type', 'status']
+    ordering_fields = ['listing_date', 'ipo_price', 'current_market_price']
 
-    paginator = Paginator(ipos, 6)  # 6 IPOs per page
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
+    def list(self, request, *args, **kwargs):
+        queryset = self.filter_queryset(self.get_queryset())
+        page = self.paginate_queryset(queryset)
+        
+        if page is not None:
+            serializer = self.get_serializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
 
-    return render(request, 'ipo_app/ipo_list.html', {
-        'page_obj': page_obj,
-        'query': query,
-        'status_filter': status_filter,
-    })
+        serializer = self.get_serializer(queryset, many=True)
+        return JsonResponse(serializer.data, safe=False)
+
+class ReactAppView(TemplateView):
+    template_name = 'index.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
+def ipo_chart_data(request):
+    monthly_ipo_count = IPO.objects.annotate(
+        month=TruncMonth('open_date')
+    ).values('month').annotate(count=Count('id')).order_by('month')
+    labels = [item['month'].strftime('%Y-%m') for item in monthly_ipo_count]
+    values = [item['count'] for item in monthly_ipo_count]
+
+    return JsonResponse({'labels': labels, 'values': values})
