@@ -62,13 +62,14 @@ WSGI_APPLICATION = 'ipo_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': config('DB_NAME', default='ipo_database'),
-        'USER': config('DB_USER', default='Syedparveez'),
-        'PASSWORD': config('DB_PASSWORD', default='Syedparveez99@'),
-        'HOST': config('DB_HOST', default='localhost'),
-        'PORT': config('DB_PORT', default='5432'),
+        'NAME': 'ipo_db',
+        'USER': 'Syedparveez',
+        'PASSWORD': 'admin123',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
+
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
