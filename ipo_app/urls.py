@@ -1,11 +1,17 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import IPOViewSet, ipo_chart_data
+from . import views
 
+# API Router
 router = DefaultRouter()
-router.register('ipo', IPOViewSet, basename='ipo')
+router.register(r'ipo', views.IPOViewSet)
 
 urlpatterns = [
-    path('', include(router.urls)),   
-    path('chart-data/', ipo_chart_data, name='ipo_chart_data'),
+    # API URLs
+    path('api/', include(router.urls)),
+    
+    # Frontend URLs
+    path('', views.home_view, name='home'),
+    path('ipo/<int:ipo_id>/', views.ipo_detail_view, name='ipo_detail'),
+    path('admin-panel/', views.admin_panel_view, name='admin_panel'),
 ]
