@@ -1,0 +1,224 @@
+/* Custom CSS for BLUESTOCK IPO Platform */
+
+:root {
+  --primary-color: #6366f1;
+  --secondary-color: #f59e0b;
+  --success-color: #10b981;
+  --danger-color: #ef4444;
+  --warning-color: #f59e0b;
+  --info-color: #3b82f6;
+  --light-color: #f8fafc;
+  --dark-color: #1e293b;
+}
+
+/* Logo Styles - Updated for actual logo image */
+.navbar-logo {
+  height: 45px;
+  width: auto;
+  max-width: 280px;
+  object-fit: contain;
+  transition: all 0.3s ease;
+}
+
+.navbar-logo:hover {
+  transform: scale(1.02);
+}
+
+/* Responsive logo sizing */
+@media (max-width: 992px) {
+  .navbar-logo {
+    height: 40px;
+    max-width: 220px;
+  }
+}
+
+@media (max-width: 768px) {
+  .navbar-logo {
+    height: 35px;
+    max-width: 180px;
+  }
+}
+
+@media (max-width: 576px) {
+  .navbar-logo {
+    height: 30px;
+    max-width: 150px;
+  }
+}
+
+/* IPO Card Styles */
+.ipo-card {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  height: 100%;
+}
+
+.ipo-card:hover {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.company-logo {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, var(--primary-color), var(--info-color));
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.status-badge {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.status-upcoming {
+  background-color: #dbeafe;
+  color: #1e40af;
+}
+
+.status-ongoing {
+  background-color: #d1fae5;
+  color: #065f46;
+}
+
+.status-listed {
+  background-color: #f3f4f6;
+  color: #374151;
+}
+
+/* Performance Indicators */
+.performance-positive {
+  color: var(--success-color);
+}
+
+.performance-negative {
+  color: var(--danger-color);
+}
+
+/* Button Styles */
+.btn-rhp {
+  background-color: transparent;
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color);
+  font-size: 0.875rem;
+  padding: 0.375rem 0.75rem;
+}
+
+.btn-rhp:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.btn-drhp {
+  background-color: var(--secondary-color);
+  border: 1px solid var(--secondary-color);
+  color: white;
+  font-size: 0.875rem;
+  padding: 0.375rem 0.75rem;
+}
+
+.btn-drhp:hover {
+  background-color: #d97706;
+  border-color: #d97706;
+}
+
+/* Stats Cards */
+.stats-card {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.stats-card h3 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.stats-card p {
+  margin-bottom: 0;
+  opacity: 0.9;
+}
+
+/* Table Styles */
+.table th {
+  background-color: var(--light-color);
+  border-bottom: 2px solid #dee2e6;
+  font-weight: 600;
+  color: var(--dark-color);
+}
+
+/* Modal Styles */
+.modal-header {
+  background-color: var(--light-color);
+  border-bottom: 1px solid #dee2e6;
+}
+
+/* Form Styles */
+.form-label {
+  font-weight: 600;
+  color: var(--dark-color);
+  margin-bottom: 0.5rem;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.2rem rgba(99, 102, 241, 0.25);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .company-logo {
+    width: 40px;
+    height: 40px;
+    font-size: 12px;
+  }
+}
+
+/* Loading Animation */
+.loading-pulse {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #5b21b6;
+}
